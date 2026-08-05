@@ -7,24 +7,72 @@ https://github.com/FOSSLingo/resources
 
 Thanks!
 
-## What is FOSSLingo?
+---
+
+### What is FOSSLingo?
 FOSSLingo is an alternative to traditional language learning apps, designed to be free and open-source. I (iddu01) believe that education should be free for all, espically language learning. I originally made this as a project for Hackclub's Horizons.
 
-## Screenshots;
+### Screenshots;
 
-<img src="/screenshots/lessons-page.png" width="436" height="294" alt="Lessons Page">
-<img src="/screenshots/multiplechoice.png" width="436" height="294" alt="Multiple Choice Page">
-<img src="/screenshots/multiplechoice-correctanswer.png" width="436" height="294" alt="Multiple Choice Page with Correct Answer">
-<img src="/screenshots/fillintheblanks.png" width="436" height="294" alt="Fill Tn The Blanks Page">
-<img src="/screenshots/fillintheblanks-correctanswer.png" width="436" height="294" alt="Fill In The Blanks page with Correct Answer">
+See [SCREENSHOTS.md](https://github.com/FOSSLingo/web/blob/main/docs/SCREENSHOTS.md)
 
-## How to use;
+### How to use;
 
-Currently, you can visit [this link](https://web-eight-ivory-84.vercel.app/) to demo FOSSLingo. Courses havent been added due to Horizon's due date, so this is currently a tech demo.
+Currently, you can visit [this link](https://web-eight-ivory-84.vercel.app/) to demo FOSSLingo. 
 
-## Development;
+<!-- Update this next section when courses are added -->
 
-First, run the development server:
+I haven't gotten around to actually adding any language courses, because yeah. So this is currently a tech demo.
+
+### Development;
+
+This guide assumes you have `npm` (or alternative), and `git` installed on a **Linux** system.
+
+First, get the code:
+
+```bash
+git clone https://github.com/FOSSLingo/web
+```
+
+Next, (enter the code directory, and) install stuff:
+
+```bash
+npm install
+# or
+yarn install
+# or
+pnpm install
+# or
+bun install
+
+# you can substitute "install" for "i" if you want to i guess
+```
+
+Create a `.env` file from the example `.env` file
+
+```bash
+cp .env.example .env
+```
+
+Change `NEXT_PUBLIC_BACKEND_URL` to your backend url:
+
+> [!NOTE]
+> If you don't have a backend server running, feel
+> free to set the backend URL to this one
+> provided by iddu01!
+> `https://backend-two-theta-39.vercel.app/`
+
+```bash
+nano .env
+```
+
+```properties
+# Change this variable!!
+NEXT_PUBLIC_BACKEND_URL=https://example.com:PORT 
+```
+
+
+Then, start the dev server:
 
 ```bash
 npm run dev
@@ -36,17 +84,18 @@ pnpm dev
 bun dev
 ```
 
-Open [`http://localhost:3000`](http://localhost:3000) with your browser to see the result.
+Open [`http://localhost:3000`](http://localhost:3000) with your web browser to see the result.
 
-## AI usage;
+### AI usage;
 
-I will be honest, I tried to not use AI in this project. Some AI was used to connect to the backend though. Some of the "connecting to backend logic" was from sites like [StackOverflow](https://stackoverflow.com) or [Reddit](https://www.reddit.com/) questions lol. All the frontend was done by me though.
+I will be honest, I tried to not use AI in this project. Some AI was used to connect to the backend though, while some of the "connecting to backend logic" was from sites like [StackOverflow](https://stackoverflow.com) or [Reddit](https://www.reddit.com/) questions lol. All the frontend was done by me though.
 
 ### Hosting on Vercel;
 > [!IMPORTANT]  
 > If you haven't deployed the backend,
 > it is a good time to do that now.
 > Follow the instructions [here](https://github.com/FOSSLingo/backend/blob/main/README.md#hosting-on-vercel)
+> The frontend will not load if there is no backend to connect to.
 
 Since this is a Next app, the best way to host would probably be on Vercel. Click this button to deploy instantly!
 
@@ -70,7 +119,7 @@ If you would like to self host the frontend on your own machine, follow these in
 > We don't cover port forwarding / exposing to the web,
 > but for that, we recommend `cloudflared`!
 
-This guide assumes you have `npm` and `git` installed on a Linux system.
+This guide assumes you have `npm` and `git` installed on a **Linux** system.
 
 1. Clone this repo somewhere easy to access:
 
