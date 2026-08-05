@@ -57,9 +57,9 @@ cp .env.example .env
 Change `NEXT_PUBLIC_BACKEND_URL` to your backend url:
 
 > [!NOTE]
-> If you don't have a backend server running, feel
-> free to set the backend URL to this one
-> provided by iddu01!
+> If you don't have a backend server running, feel<br>
+> free to set the backend URL to this one<br>
+> provided by iddu01!<br>
 > `https://backend-two-theta-39.vercel.app/`
 
 ```bash
@@ -92,9 +92,9 @@ I will be honest, I tried to not use AI in this project. Some AI was used to con
 
 ### Hosting on Vercel;
 > [!IMPORTANT]  
-> If you haven't deployed the backend,
-> it is a good time to do that now.
-> Follow the instructions [here](https://github.com/FOSSLingo/backend/blob/main/README.md#hosting-on-vercel)
+> If you haven't deployed the backend,<br>
+> it is a good time to do that now.<br>
+> Follow the instructions [here](https://github.com/FOSSLingo/backend/blob/main/README.md#hosting-on-vercel)<br>
 > The frontend will not load if there is no backend to connect to.
 
 Since this is a Next app, the best way to host would probably be on Vercel. Click this button to deploy instantly!
@@ -116,7 +116,7 @@ Or, follow these instructions manually.
 If you would like to self host the frontend on your own machine, follow these instructions. 
 
 > [!TIP]
-> We don't cover port forwarding / exposing to the web,
+> We don't cover port forwarding / exposing to the web,<br>
 > but for that, we recommend `cloudflared`!
 
 This guide assumes you have `npm` and `git` installed on a **Linux** system.
