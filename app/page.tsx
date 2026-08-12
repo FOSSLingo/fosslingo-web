@@ -8,8 +8,8 @@ import * as FeatherIcons from 'react-feather';
 import { Roboto } from 'next/font/google';
 import { motion } from "motion/react";
 
-import { Footer } from "@/src/components/footer"
-import { NavBar } from '@/src/components/navbar';
+import { Footer } from "@/src/components/ui/footer"
+import { NavBar } from '@/src/components/ui/navbar';
 
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from "react";

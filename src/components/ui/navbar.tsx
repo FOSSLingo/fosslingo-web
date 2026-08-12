@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image";
 
-import { LightDarkModeToggle } from '@/src/components/lightDarkModeToggle';
+import { LightDarkModeToggle } from '@/src/components/ui/lightDarkModeToggle';
 
 import { useTranslations } from "next-intl";
 

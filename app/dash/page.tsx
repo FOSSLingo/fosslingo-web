@@ -8,12 +8,12 @@
 // ! is used for alerts!
 // TODO is used for TODO's
 
-import { VerticalBr } from "@/src/components/verticalBr"
-import { LessonCard } from "@/src/components/lessonCard";
+import { VerticalBr } from "@/src/components/ui/verticalBr"
+import { LessonCard } from "@/src/components/ui/lessonCard";
 import Link from "next/link";
 import Navigation, { redirect } from "next/navigation"
 import * as FeatherIcons from 'react-feather';
-import { Sidebar } from "@/src/components/sidebar";
+import { Sidebar } from "@/src/components/ui/sidebar";
 
 export default async function Dash({ searchParams }: { searchParams: Promise<{ courseId?: string }>}) {
   const { courseId } = await searchParams;

@@ -1,7 +1,7 @@
 "use client"
 
-import { LightDarkModeToggle } from "@/src/components/lightDarkModeToggle"
-import { Sidebar } from "@/src/components/sidebar"
+import { LightDarkModeToggle } from "@/src/components/ui/lightDarkModeToggle"
+import { Sidebar } from "@/src/components/ui/sidebar"
 export default function Settings() {
   return (
     <div className="flex">

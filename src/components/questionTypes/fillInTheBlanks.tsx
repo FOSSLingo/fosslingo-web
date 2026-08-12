@@ -5,28 +5,24 @@ import Image from "next/image";
 import Checkmark from "@/public/checkmark.svg"
 import Neutral from "@/public/neutral.svg"
 import X from "@/public/x.svg"
-import ProgressBar from "./progressBar";
+import ProgressBar from "../ui/progressBar";
 import { X as Cancel } from "react-feather";
-import Link from "next/link";
 
-
-
-export default function MultipleChoice({ data }: any) {
+export default function fillInTheBlanks({ data }: any) {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [score, setScore] = useState(0)
   const [increment, setIncrement] = useState(0)
   const [indicator, setIndicator] = useState<"neutral" | "correct" | "wrong">("neutral");
   const [selected, setSelected] = useState("");
   const question = data.file.questions[currentQuestion];
   const progress = ((currentQuestion + 1) / data.file.questions.length) * 100;
 
-  const serverUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-
   if (!indicator) {
     setIndicator('neutral')
   }
 
-  function checkAnswer(option: any) {
+  function checkAnswer(option: string) {
     if (option === question.answer) {
       setIndicator("correct");
       setIncrement(progress)
@@ -39,7 +35,8 @@ export default function MultipleChoice({ data }: any) {
           window.history.back();
           setIncrement(progress)
         }
-      }, 1000)
+      }, 1000);
+
     } else {
       setIndicator("wrong");
     }
@@ -49,7 +46,7 @@ export default function MultipleChoice({ data }: any) {
     <main className="flex flex-col min-h-screen">
       <div className="flex items-center justify-center pt-5 gap-5 px-4">
         <Cancel className="cursor-pointer" onClick={() => window.history.back()}/>
-        <ProgressBar progress={increment}/>
+        <ProgressBar progress={increment} />
       </div>
       <div className="flex flex-1 items-center justify-center">
         <div className="flex flex-col justify-center items-center p-5">
@@ -57,26 +54,18 @@ export default function MultipleChoice({ data }: any) {
             {data.courseIndex.Sections[data.sectionButANumber].lessons[data.lessonButANumber].name}
           </h1>
           <p className="font-bold text-xl text-center">{question.question}</p>
-          <div className='grid grid-cols-2 md:grid-cols-4 gap-3 pt-4'>
-            {question.options.map((option: any) => (
+          <div className='flex gap-3 pt-4'>
+            {question.options.map((option: string) => (
               <div 
-                key={option.text}
-                onClick={() => setSelected(option.text)} 
+                key={option}
+                onClick={() => setSelected(option)}
                 className={`${
-                  selected === option.text
+                  selected === option
                     ? "bg-teal-400 text-black border-teal-200"
                     : "bg-[#e3e3e3] border-[#cccccc] dark:bg-[#0f0f0f] dark:border-[#1f1f1f]"
-                } rounded-xl p-3 flex flex-col gap-5 items-center justify-center font-bold border-2`
-              } 
+                } rounded-xl p-3 border-2`}
               >
-                {option.text}
-                <Image
-                  src={`${serverUrl}/resources${option.image}`}
-                  alt="hi"
-                  width="200"
-                  height="200"
-                  loading="eager"
-                />
+                {option}
               </div>
             ))}  
           </div>

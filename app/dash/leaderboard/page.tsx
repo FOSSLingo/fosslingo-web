@@ -1,4 +1,4 @@
-import { Sidebar } from "@/src/components/sidebar";
+import { Sidebar } from "@/src/components/ui/sidebar";
 
 export default function Leaderboard() {
   return (

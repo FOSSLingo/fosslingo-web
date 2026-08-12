@@ -1,5 +1,5 @@
-import { CourseIcon } from "@/src/components/courseIcon";
-import { Sidebar } from "@/src/components/sidebar";
+import { CourseIcon } from "@/src/components/ui/courseIcon";
+import { Sidebar } from "@/src/components/ui/sidebar";
 
 export default async function Dash() {
   const serverUrl = process.env.NEXT_PUBLIC_BACKEND_URL

@@ -1,5 +1,5 @@
-import fillInTheBlanksServer from '@/src/components/fillInTheBlanksServer'
-import FillInTheBlanks from '@/src/components/fillInTheBlanks'
+import fillInTheBlanksServer from '@/src/components/questionTypes/fillInTheBlanksServer'
+import FillInTheBlanks from '@/src/components/questionTypes/fillInTheBlanks'
 
 import { parse, stringify } from 'yaml'
 import YAML from 'yaml'
