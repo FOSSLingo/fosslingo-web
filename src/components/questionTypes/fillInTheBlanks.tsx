@@ -11,7 +11,6 @@ import { X as Cancel } from "react-feather";
 export default function fillInTheBlanks({ data }: any) {
 
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [score, setScore] = useState(0)
   const [increment, setIncrement] = useState(0)
   const [indicator, setIndicator] = useState<"neutral" | "correct" | "wrong">("neutral");
   const [selected, setSelected] = useState("");

@@ -8,7 +8,6 @@
 // ! is used for alerts!
 // TODO is used for TODO's
 
-import { parse, stringify } from 'yaml'
 import YAML from 'yaml'
 
 export default async function MultipleChoiceServer({ searchParams }: { searchParams: Promise<{ courseId?: string, lesson?: string, section?: string }>}) {

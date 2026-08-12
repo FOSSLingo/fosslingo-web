@@ -58,23 +58,9 @@ export default function TypeTheText({ data }: any) {
           </h1>
           <p className="font-bold text-xl text-center">{question.question}</p>
           <div className='flex gap-3 pt-4'>
-            {/* {question.options.map((option: string) => (
-              <div 
-                key={option}
-                onClick={() => setinput(option)}
-                className={`${
-                  input === option
-                    ? "bg-teal-400 text-black border-teal-200"
-                    : "bg-[#e3e3e3] border-[#cccccc] dark:bg-[#0f0f0f] dark:border-[#1f1f1f]"
-                } rounded-xl p-3 border-2`}
-              >
-                {option}
-              </div>
-            ))}   */}
             <div className="flex flex-col gap-2">
               <p className="font-bold text-xl text-center">{question.answer}</p>
               <input className="border-2 rounded-sm border-white" name="answerInput" value={input} onChange={setInput}/>
-              <p>{input}</p>
             </div>
           </div>
         </div>

@@ -7,9 +7,6 @@ import Neutral from "@/public/neutral.svg"
 import X from "@/public/x.svg"
 import ProgressBar from "../ui/progressBar";
 import { X as Cancel } from "react-feather";
-import Link from "next/link";
-
-
 
 export default function MultipleChoice({ data }: any) {
 
