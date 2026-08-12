@@ -11,7 +11,7 @@
 import { parse, stringify } from 'yaml'
 import YAML from 'yaml'
 
-export default async function MultipleChoiceServer({ searchParams }: { searchParams: Promise<{ courseId?: string, lesson?: string, section?: string }>}) {
+export default async function typeTheTextServer({ searchParams }: { searchParams: Promise<{ courseId?: string, lesson?: string, section?: string }>}) {
 
   const { courseId } = await searchParams;
   const { lesson } = await searchParams;

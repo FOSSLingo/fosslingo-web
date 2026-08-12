@@ -21,7 +21,7 @@ export default async function fillInTheBlanksServer({ searchParams }: { searchPa
   const serverUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const response = await fetch(serverUrl!, { cache: "no-store" });
 
-  const courses = await response.json(); //? turn raw courses into proper json
+  const courses = await response.json(); // ? turn raw courses into proper json
   const course = courses.find((c: any) => c.courseID === Number(courseId)); 
 
   // * ofcourse cache: can be changed / removed if you want no caching for faster loading, but i reccomend no caching
