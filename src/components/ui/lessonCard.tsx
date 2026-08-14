@@ -4,7 +4,6 @@ import { cookies } from "next/headers";
 interface LessonCardProps {
   lesson: string;
   name: string;
-  lessonFile: string;
   lessonType: string;
   courseHrefTag: string;
   lessonHrefTag: string;
@@ -14,14 +13,11 @@ interface LessonCardProps {
 export const LessonCard = async ({ 
   lesson, 
   name, 
-  lessonFile,
   lessonType,
   courseHrefTag,
   lessonHrefTag,
   sectionHrefTag,
 }: LessonCardProps) => {
-  const cookieStore = await cookies();
-  const theme = cookieStore.get('theme')?.value || 'light';
   return (
     <div className={`w-full h-50 rounded-[40] items-center justify-center flex flex-col border-2 dark:bg-[#0f0f0f] dark:text-white dark:border-[#1f1f1f] bg-[#e3e3e3] text-black border-[#cccccc]`}>
       <h1 className="font-bold text-2xl pb-3">{lesson}</h1>

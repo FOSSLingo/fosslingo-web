@@ -1,15 +1,9 @@
 "use client"
 
-import Link from "next/link"
-import { Roboto } from 'next/font/google';
 import { useTranslations } from "next-intl";
 
 import { Footer } from "@/src/components/ui/footer";
 import { NavBar } from "@/src/components/ui/navbar";
-
-const roboto = Roboto({
-  subsets: ['latin']
-})
 
 export default function License() {
   const t = useTranslations("CoursesPage")

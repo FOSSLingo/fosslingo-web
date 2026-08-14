@@ -10,9 +10,9 @@
 
 import YAML from 'yaml'
 
-export default async function TranscribeTheAudioServer({ searchParams }: { searchParams: Promise<{ courseId?: string, lesson?: string, section?: string }>}) {
+export default async function TranscribeTheAudioServer({ searchParams }: { searchParams: Promise<{ courseID?: string, lesson?: string, section?: string }>}) {
 
-  const { courseId } = await searchParams;
+  const { courseID } = await searchParams;
   const { lesson } = await searchParams;
   const { section } = await searchParams;
   const sectionButANumber = Number(section) - 1; // * Scratch that, you can do -1 since
@@ -21,7 +21,7 @@ export default async function TranscribeTheAudioServer({ searchParams }: { searc
   const response = await fetch(serverUrl!, { cache: "no-store" });
 
   const courses = await response.json(); // ? turn raw courses into proper json
-  const course = courses.find((c: any) => c.courseID === Number(courseId)); 
+  const course = courses.find((c: any) => c.courseID === Number(courseID)); 
 
   // * ofcourse cache: can be changed / removed if you want no caching for faster loading, but i reccomend no caching
   const courseResponse = await fetch(`${serverUrl}/resources${course.courseFolder}/index.json`, {cache: "no-store"});  

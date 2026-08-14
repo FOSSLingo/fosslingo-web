@@ -8,8 +8,9 @@ import X from "@/public/x.svg"
 import ProgressBar from "../ui/progressBar";
 import { X as Cancel } from "react-feather";
 
-export default function FillInTheBlanks({ data }: any) {
+import { IsAiFeaturesEnabled } from "../ai/isAiFeaturesEnabled";
 
+export default function FillInTheBlanks({ data }: any) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [increment, setIncrement] = useState(0)
   const [indicator, setIndicator] = useState<"neutral" | "correct" | "wrong">("neutral");
@@ -17,19 +18,52 @@ export default function FillInTheBlanks({ data }: any) {
   const question = data.file.questions[currentQuestion];
   const progress = ((currentQuestion + 1) / data.file.questions.length) * 100;
 
-  if (!indicator) {
-    setIndicator('neutral')
+  const [explanation, setExplanation] = useState("");
+  const [loadingExplanation, setLoadingExplanation] = useState(false)
+  const [explanationButtonVisible, setExplanationButtonVisible] = useState(false)
+
+  async function getExplanation(userAnswer: string) {
+    setLoadingExplanation(true)
+    setExplanation("");
+
+    try {
+      const response = await fetch("/api/explainAnswer", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          question: question.question,
+          correctAnswer: question.answer,
+          userAnswer: userAnswer
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) {
+        throw new Error(data.error);
+      }
+      setExplanation(data.explanation)
+    } catch (error) {
+      console.error(error);
+      setExplanation("Gemini error, please try again later.");
+    } finally {
+      setLoadingExplanation(false)
+    }
   }
 
-  function checkAnswer(option: string) {
+  async function checkAnswer(option: string) {
     if (option === question.answer) {
       setIndicator("correct");
       setIncrement(progress)
+      setExplanationButtonVisible(false)
+      setExplanation("")
       setTimeout(() => {
         if (currentQuestion < data.file.questions.length - 1) {
           setCurrentQuestion(currentQuestion + 1);
           setSelected("");
           setIndicator("neutral");
+          setExplanation("")
+          setExplanationButtonVisible(false)
         } else {
           window.history.back();
           setIncrement(progress)
@@ -38,7 +72,14 @@ export default function FillInTheBlanks({ data }: any) {
 
     } else {
       setIndicator("wrong");
+      setExplanation("")
+      setExplanationButtonVisible(true)
     }
+  }
+
+  async function explainAnswer() {
+    setExplanationButtonVisible(false)
+    await getExplanation(selected)
   }
 
   return (
@@ -103,7 +144,30 @@ export default function FillInTheBlanks({ data }: any) {
                 : indicator === "wrong"
                 ? "Incorrect Answer!"
                 : ""
-              }</h1>
+              }
+            </h1>
+            {loadingExplanation && (
+              <p className="mt-2 max-w-xl text-lg">
+                Gemini is thinking.. 🤔
+              </p>
+            )}
+
+            {!loadingExplanation && explanation && (
+              <p className="mt-2 max-w-xl text-lg">
+                {explanation}
+              </p>
+            )}
+
+            {IsAiFeaturesEnabled() && explanationButtonVisible && !loadingExplanation && !explanation && (
+              <div
+                className="flex items-center justify-center w-25 md:w-50 h-10 bg-teal-400 rounded-3xl border-2 border-black cursor-pointer"
+                onClick={explainAnswer}
+              >
+                <p className="font-bold text-black text-xl text-sm">
+                  Why?
+                </p>
+              </div>
+            )}
           </div>
           </div>
           <div className="flex justify-end">
