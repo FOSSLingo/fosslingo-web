@@ -60,7 +60,7 @@ Change `NEXT_PUBLIC_BACKEND_URL` to your backend url:
 > If you don't have a backend server running, feel<br>
 > free to set the backend URL to this one<br>
 > provided by iddu01!<br>
-> `https://backend-two-theta-39.vercel.app/`
+> `backend.learn.iddu01.me`
 
 ```bash
 nano .env

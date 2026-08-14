@@ -8,12 +8,12 @@ import X from "@/public/x.svg"
 import ProgressBar from "../ui/progressBar";
 import { X as Cancel } from "react-feather";
 
-export default function FillInTheBlanks({ data }: any) {
-
+export default function TranscribeTheAudio({ data }: any) {
+  const serverUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [increment, setIncrement] = useState(0)
   const [indicator, setIndicator] = useState<"neutral" | "correct" | "wrong">("neutral");
-  const [selected, setSelected] = useState("");
+  const [input, setinput] = useState("");
   const question = data.file.questions[currentQuestion];
   const progress = ((currentQuestion + 1) / data.file.questions.length) * 100;
 
@@ -21,14 +21,14 @@ export default function FillInTheBlanks({ data }: any) {
     setIndicator('neutral')
   }
 
-  function checkAnswer(option: string) {
-    if (option === question.answer) {
+  function checkAnswer(input: string) {
+    if (input === question.answer) {
       setIndicator("correct");
       setIncrement(progress)
       setTimeout(() => {
         if (currentQuestion < data.file.questions.length - 1) {
           setCurrentQuestion(currentQuestion + 1);
-          setSelected("");
+          setinput("");
           setIndicator("neutral");
         } else {
           window.history.back();
@@ -40,6 +40,10 @@ export default function FillInTheBlanks({ data }: any) {
       setIndicator("wrong");
     }
   }
+
+  const setInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setinput(e.target.value);
+  };
 
   return (
     <main className="flex flex-col min-h-screen">
@@ -54,19 +58,23 @@ export default function FillInTheBlanks({ data }: any) {
           </h1>
           <p className="font-bold text-xl text-center">{question.question}</p>
           <div className='flex gap-3 pt-4'>
-            {question.options.map((option: string) => (
+            {/* {question.options.map((option: string) => (
               <div 
                 key={option}
-                onClick={() => setSelected(option)}
+                onClick={() => setinput(option)}
                 className={`${
-                  selected === option
+                  input === option
                     ? "bg-teal-400 text-black border-teal-200"
                     : "bg-[#e3e3e3] border-[#cccccc] dark:bg-[#0f0f0f] dark:border-[#1f1f1f]"
                 } rounded-xl p-3 border-2`}
               >
                 {option}
               </div>
-            ))}  
+            ))}   */}
+            <audio key={currentQuestion} controls>
+              <source src={`${serverUrl}/resources${question.soundFile}`}/>
+            </audio>
+            <input className="border-2 rounded-sm border-white" name="answerInput" value={input} onChange={setInput}/>
           </div>
         </div>
       </div>
@@ -108,7 +116,7 @@ export default function FillInTheBlanks({ data }: any) {
           </div>
           <div className="flex justify-end">
             <div className="flex items-center justify-center w-25 md:w-50 h-20 bg-teal-400 rounded-3xl border-2 border-black" onClick={ () =>
-              !selected ? alert("Please select an option and try again") : checkAnswer(selected)
+              !input ? alert("Please type something and try again!") : checkAnswer(input)
             }>
               <p className="font-bold text-black hidden sm:block text-xl">Check Answer</p>
               <p className="font-bold text-black sm:hidden text-4xl">✓</p>

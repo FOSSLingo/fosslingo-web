@@ -103,7 +103,7 @@ export default function TypeTheText({ data }: any) {
           </div>
           <div className="flex justify-end">
             <div className="flex items-center justify-center w-25 md:w-50 h-20 bg-teal-400 rounded-3xl border-2 border-black" onClick={ () =>
-              !input ? alert("Please select an option and try again") : checkAnswer(input)
+              !input ? alert("Please type something and try again!") : checkAnswer(input)
             }>
               <p className="font-bold text-black hidden sm:block text-xl">Check Answer</p>
               <p className="font-bold text-black sm:hidden text-4xl">✓</p>

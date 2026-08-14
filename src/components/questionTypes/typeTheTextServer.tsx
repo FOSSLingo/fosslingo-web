@@ -10,13 +10,13 @@
 
 import YAML from 'yaml'
 
-export default async function typeTheTextServer({ searchParams }: { searchParams: Promise<{ courseId?: string, lesson?: string, section?: string }>}) {
+export default async function TypeTheTextServer({ searchParams }: { searchParams: Promise<{ courseId?: string, lesson?: string, section?: string }>}) {
 
   const { courseId } = await searchParams;
   const { lesson } = await searchParams;
   const { section } = await searchParams;
-  const sectionButANumber = Number(section); // ! please don't do -1 because the id's are
-  const lessonButANumber = Number(lesson);   // ! starting from zero (0) now
+  const sectionButANumber = Number(section) - 1; // * Scratch that, you can do -1 since
+  const lessonButANumber = Number(lesson) - 1;   // * it is starting from one (1) now
   const serverUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const response = await fetch(serverUrl!, { cache: "no-store" });
 

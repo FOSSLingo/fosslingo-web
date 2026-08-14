@@ -10,7 +10,7 @@
 
 import YAML from 'yaml'
 
-export default async function FillInTheBlanksServer({ searchParams }: { searchParams: Promise<{ courseId?: string, lesson?: string, section?: string }>}) {
+export default async function TranscribeTheAudioServer({ searchParams }: { searchParams: Promise<{ courseId?: string, lesson?: string, section?: string }>}) {
 
   const { courseId } = await searchParams;
   const { lesson } = await searchParams;
@@ -26,8 +26,8 @@ export default async function FillInTheBlanksServer({ searchParams }: { searchPa
   // * ofcourse cache: can be changed / removed if you want no caching for faster loading, but i reccomend no caching
   const courseResponse = await fetch(`${serverUrl}/resources${course.courseFolder}/index.json`, {cache: "no-store"});  
   const courseIndex = await courseResponse.json();
-
   const lessonFileResponse = await fetch(`${serverUrl}/resources${courseIndex.Sections[sectionButANumber].sectionFolder}/${courseIndex.Sections[sectionButANumber].lessons[lessonButANumber].lessonFile}`, { cache: "no-store" })
+  
   const lessonText = await lessonFileResponse.text()
   const file = YAML.parse(lessonText)
   return {
