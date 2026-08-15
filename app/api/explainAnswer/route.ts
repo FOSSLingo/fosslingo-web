@@ -42,6 +42,10 @@ export async function POST(request: Request) {
         text formatting
       - Focus on the language learning mistake, try to
         explain vocabulary
+      
+      DO NOT GIVE THE ANSWER IN THE RESPONE YOU PROVIDE!
+      You are supposed to teach the user, not blindly
+      provide the answer.
 
       Thank you!
     `

@@ -8,7 +8,7 @@ import X from "@/public/x.svg"
 import ProgressBar from "../ui/progressBar";
 import { X as Cancel } from "react-feather";
 
-import { IsAiFeaturesEnabled } from "../ai/isAiFeaturesEnabled";
+import { IsAiFeaturesEnabled } from "@/src/components/ai/isAiFeaturesEnabled";
 
 export default function FillInTheBlanks({ data }: any) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -137,38 +137,38 @@ export default function FillInTheBlanks({ data }: any) {
               height={80}
               className="rounded-lg"
             />
-          <div className="flex flex-col">
-            <h1 className="font-bold text-2xl">{
-              indicator === "correct"
-                ? "Correct Answer!"
-                : indicator === "wrong"
-                ? "Incorrect Answer!"
-                : ""
-              }
-            </h1>
-            {loadingExplanation && (
-              <p className="mt-2 max-w-xl text-lg">
-                Gemini is thinking.. 🤔
-              </p>
-            )}
-
-            {!loadingExplanation && explanation && (
-              <p className="mt-2 max-w-xl text-lg">
-                {explanation}
-              </p>
-            )}
-
-            {IsAiFeaturesEnabled() && explanationButtonVisible && !loadingExplanation && !explanation && (
-              <div
-                className="flex items-center justify-center w-25 md:w-50 h-10 bg-teal-400 rounded-3xl border-2 border-black cursor-pointer"
-                onClick={explainAnswer}
-              >
-                <p className="font-bold text-black text-xl text-sm">
-                  Why?
+            <div className="flex flex-col">
+              <h1 className="font-bold text-2xl">{
+                indicator === "correct"
+                  ? "Correct Answer!"
+                  : indicator === "wrong"
+                  ? "Incorrect Answer!"
+                  : ""
+                }
+              </h1>
+              {loadingExplanation && (
+                <p className="mt-2 max-w-xl text-lg">
+                  Gemini is thinking.. 🤔
                 </p>
-              </div>
-            )}
-          </div>
+              )}
+
+              {!loadingExplanation && explanation && (
+                <p className="mt-2 max-w-xl text-lg">
+                  {explanation}
+                </p>
+              )}
+
+              {IsAiFeaturesEnabled() && explanationButtonVisible && !loadingExplanation && !explanation && (
+                <div
+                  className="flex items-center justify-center w-25 md:w-50 h-10 bg-teal-400 rounded-3xl border-2 border-black cursor-pointer"
+                  onClick={explainAnswer}
+                >
+                  <p className="font-bold text-black text-xl text-sm">
+                    Why?
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
           <div className="flex justify-end">
             <div className="flex items-center justify-center w-25 md:w-50 h-20 bg-teal-400 rounded-3xl border-2 border-black" onClick={ () =>
